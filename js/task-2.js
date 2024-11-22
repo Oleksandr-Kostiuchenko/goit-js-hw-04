@@ -1,25 +1,45 @@
-//TODO: Напиши функцію під назвою makeArray, яка приймає три параметри: firstArray (масив), secondArray (масив) і maxLength (число). Функція повинна створювати новий масив, який містить усі елементи з firstArray, а потім усі елементи з secondArray.
+//TODO: Напиши функцію calcAverageCalories(days), яка повертає середньодобове значення кількості калорій, які спортсмен споживав протягом тижня. 
+//? Функція очікує один параметр: days — масив об’єктів. Кожен об’єкт описує день тижня та кількість калорій calories, спожитих спортсменом, у цей день. Візьми код нижче і встав після оголошення своєї функції для перевірки коректності її роботи. У консоль будуть виведені результати її викликів.
 
-//? Якщо кількість елементів у новому масиві перевищує maxLength, функція повинна повернути копію масиву з довжиною maxLength елементів.
-//? В іншому випадку функція повинна повернути весь новий масив.
-
-function makeArray(firstArray, secondArray, maxLength){
-    let totalArrList = (firstArray.concat(secondArray));
+function calcAverageCalories(days){
+    let totalSum = 0;
+    let averageNum = 0;
     
-    if (totalArrList.length > maxLength){
-        totalArrList =  totalArrList.slice(0, maxLength);
-        return totalArrList;
-    } 
-    else if (totalArrList.length <= maxLength){
-        return totalArrList;
+    for(let daily of days){
+        totalSum += daily.calories;
     }
 
+    averageNum = totalSum / days.length;
+    if(days.length === 0){
+        return 0 ;
+    }
+    return averageNum;
 }
 
+console.log(
+    calcAverageCalories([
+        { day: "monday", calories: 3010 },
+        { day: "tuesday", calories: 3200 },
+        { day: "wednesday", calories: 3120 },
+        { day: "thursday", calories: 2900 },
+        { day: "friday", calories: 3450 },
+        { day: "saturday", calories: 3280 },
+        { day: "sunday", calories: 3300 }
+    ])
+);
 
-console.log(makeArray(["Mango", "Poly"], ["Ajax", "Chelsea"], 3));
-console.log(makeArray(["Mango", "Poly", "Houston"], ["Ajax", "Chelsea"], 4));
-console.log(makeArray(["Mango"], ["Ajax", "Chelsea", "Poly", "Houston"], 3));
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus"], 2));
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus"], 4));
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus", "Venus"], 0));
+console.log(
+    calcAverageCalories([
+        { day: "monday", calories: 2040 },
+        { day: "tuesday", calories: 2270 },
+        { day: "wednesday", calories: 2420 },
+        { day: "thursday", calories: 1900 },
+        { day: "friday", calories: 2370 },
+        { day: "saturday", calories: 2280 },
+        { day: "sunday", calories: 2610 }
+    ])
+);
+
+console.log(
+    calcAverageCalories([])
+);
